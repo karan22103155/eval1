@@ -1,0 +1,53 @@
+shopping=[]
+def add_item(shop,item):
+    shop.append(item)
+def rem_item_and_check(shop,item):
+    i=0
+    while i< len(shop):
+        if(shop[i]==item):
+            break
+        i+=1
+    if(i==len(shop)):
+        return False
+    shop.remove(item)
+    return True
+def display(shop):
+   i=0;
+   while i<len(shop):
+         print(shop[i])
+         i+=1
+    
+n=int(input("enter initial number of items in list"))
+i=0
+while i<n:
+    sh=str(input("enter item"))
+    shopping.append(sh)
+    i+=1
+item=str(input("enter item to be added"))
+add_item(shopping,item)
+display(shopping)
+remo=str(input("enter item to be remove"))
+present=rem_item_and_check(shopping,remo)
+if(present):
+    display(shopping)
+else:
+    print("not present")
+
+
+#binary search
+to_search=str(input("enter item to be searched"))
+l=0
+r=len(shopping)-1
+def binary_search(l,r,shop,item):
+    if(l<r):
+        m=int((l+r)/2)
+        if(shop[m]==item):
+            return m
+        p=binary_search(l+1,r,shop,item)
+        q=binary_search(l,r-1,shop,item)
+        return p or q
+    else:
+        return 0
+loc=binary_search(l,r,shopping,to_search)
+print(shopping[loc][::-1])
+
